@@ -1,3 +1,12 @@
+class channelInfo {
+    constructor(channelName, channelLogo, channelContent, channelUrl) {
+        this.channelName = channelName;
+        this.channelLogo = channelLogo;
+        this.channelContent = channelContent;
+        this.channelUrl = channelUrl
+    }
+}
+
 class streamInfo {
     constructor(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg) {
         this.isOnline = isOnline;
@@ -8,16 +17,7 @@ class streamInfo {
     }
 }
 
-class channelInfo {
-    constructor(channelName, channelLogo, channelContent, channelUrl) {
-        this.channelName = channelName;
-        this.channelLogo = channelLogo;
-        this.channelContent = channelContent;
-        this.channelUrl = channelUrl
-    }
-}
-
-const API_URL = "https://wind-bow.gomix.me/twitch-api/";
+const API = "https://wind-bow.gomix.me/twitch-api/";
 const logoPlaceholder = "img/twitch-logo-256x256.png";
 const streamPreviewPlaceholder = "img/twitch320x180.jpeg";
 
@@ -43,10 +43,33 @@ const displayedChannels = [
     "noobs2ninjas"
 ];
 
+const getChannelsData = (channel) => {
 
+    fetchDataFromTwitchAPI(channel, "stream")
+        .then(data => console.log(data))
+        .catch(error => handleError(error))
 
+};
 
+const fetchDataFromTwitchAPI = (channelName, typeOfData) => {
 
+    let URL;
+    typeOfData === "stream" ?
+        URL = `${API}streams/`
+        :
+        URL = `${API}channels/`;
 
+    return $.ajax({
+        dataType: "jsonp", // jsonp is needed to prevent CORS problems
+        url: `${URL}${channelName}`
+    })
 
+};
 
+const handleError = error => alert(error);
+
+$(document).ready(() => {
+
+    $(window).on( "load", displayedChannels.forEach(channel => getChannelsData(channel)))
+
+});
