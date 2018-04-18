@@ -41,12 +41,12 @@ const displayedChannels = [
     "habathcx",
     "RobotCaleb",
     "noobs2ninjas"
-];
+]; //TODO: if user wants to display additional channel, simply push input to this array and run getChannelsData again
 
 const getChannelsData = (channel) => {
 
     fetchDataFromTwitchAPI(channel, "stream")
-        .then(data => console.log(data))
+        .then(data => passStreamDataToClass(data))
         .catch(error => handleError(error))
 
 };
@@ -64,6 +64,36 @@ const fetchDataFromTwitchAPI = (channelName, typeOfData) => {
         url: `${URL}${channelName}`
     })
 
+};
+
+const passStreamDataToClass = (data) => {
+
+    data.stream ? setActiveStreamData(data) : setStreamAsOffline(data)
+
+};
+
+const setActiveStreamData = (data) => {
+
+    const channelName = data.stream.channel.display_name || "unknown";
+    const channelLogo = data.stream.channel.logo || logoPlaceholder;
+    const channelContent = data.stream.channel.game || "unknown";
+    const channelUrl = data.stream.channel.url || "https://www.twitch.tv/";
+
+    const isOnline = true;
+    const streamContent = data.stream.game || "unknown";
+    const streamStatus = data.stream.channel.status || "unknown";
+    const streamViewers = data.stream.viewers || "unknown";
+    const streamPreviewImg = data.stream.preview.medium || streamPreviewPlaceholder;
+
+    channelsData.push({
+        "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl),
+        "streamInfo": new streamInfo(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg)
+    })
+
+};
+
+const setStreamAsOffline = (data) => {
+    console.log("stream is offline");
 };
 
 const handleError = error => alert(error);
