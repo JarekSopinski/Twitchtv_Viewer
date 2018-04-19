@@ -28,14 +28,14 @@ const channelsData = [
 
 const displayedChannelsNames = [
     "ESL_SC2",
-    "OgamingSC2",
-    "cretetion",
+    // "OgamingSC2",
+    // "cretetion",
     "freecodecamp",
-    "storbeck",
-    "habathcx",
-    "RobotCaleb",
-    "noobs2ninjas"
-]; // TODO: while testing css, I should temporary remove all but one to prevent doing too many calls
+    // "storbeck",
+    // "habathcx",
+    // "RobotCaleb",
+    // "noobs2ninjas"
+]; // Temporary disabled most items to prevent doing too many calls in development stage
 
 const activeChannels = [];
 
@@ -99,11 +99,10 @@ const passInactiveChannelsDataToClass = (data) => {
         const streamContent = null;
         const streamStatus = null;
         const streamViewers = null;
-        const streamPreviewImg = null;
 
         channelsData.push({
             "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl, channelFollowers),
-            "streamInfo": new streamInfo(isActive, streamContent, streamStatus, streamViewers, streamPreviewImg)
+            "streamInfo": new streamInfo(isActive, streamContent, streamStatus, streamViewers, streamPreviewPlaceholder)
         });
 
     }

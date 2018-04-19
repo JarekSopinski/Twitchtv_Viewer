@@ -1,0 +1,39 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  cursor: pointer;
+}
+
+p, span {
+  //font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  margin-top: 25px;
+  //font-family: 'Marcellus SC', serif;
+  font-size: 35px;
+  text-align: center;
+  color: #EDF2F4;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 25px;
+
+  span {
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  span:first-of-type {
+    color: #EDF2F4;
+  }
+
+  span:last-of-type {
+    color: #FF9F1C;
+  }
+
+}
