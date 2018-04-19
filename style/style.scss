@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Lato');
+
+// COLORS:
+
+$dark-blue: #003049;
+$red: #D62828;
+$orange: #F77F00;
+$yellow: #FCBF49;
+$white: #EAE2B7;
+
+// FONTS;
+
+$first-text: 'Black Han Sans', sans-serif;
+$second-text: 'Lato', sans-serif;
+
 a {
   text-decoration: none;
   color: black;
@@ -8,15 +23,19 @@ button {
 }
 
 p, span {
-  //font-family: 'Open Sans', sans-serif;
+  font-family: $second-text;
 }
 
 h1 {
   margin-top: 25px;
-  //font-family: 'Marcellus SC', serif;
+  font-family: $first-text;
   font-size: 35px;
   text-align: center;
-  color: #EDF2F4;
+  color: black;
+}
+
+#add-channel-form {
+  text-align: center;
 }
 
 footer {
@@ -29,11 +48,11 @@ footer {
   }
 
   span:first-of-type {
-    color: #EDF2F4;
+    color: $dark-blue;
   }
 
   span:last-of-type {
-    color: #FF9F1C;
+    color: $red;
   }
 
 }

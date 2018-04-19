@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Black+Han+Sans|Lato");
 a {
   text-decoration: none;
   color: black; }
@@ -5,11 +6,18 @@ a {
 button {
   cursor: pointer; }
 
+p, span {
+  font-family: "Lato", sans-serif; }
+
 h1 {
   margin-top: 25px;
+  font-family: "Black Han Sans", sans-serif;
   font-size: 35px;
   text-align: center;
-  color: #EDF2F4; }
+  color: black; }
+
+#add-channel-form {
+  text-align: center; }
 
 footer {
   text-align: center;
@@ -18,8 +26,8 @@ footer {
     font-style: italic;
     font-size: 15px; }
   footer span:first-of-type {
-    color: #EDF2F4; }
+    color: #003049; }
   footer span:last-of-type {
-    color: #FF9F1C; }
+    color: #D62828; }
 
 /*# sourceMappingURL=style.css.map */
