@@ -1,3 +1,27 @@
+const $channelsList = $("#channelsList");
+
+const API_URL = "https://wind-bow.gomix.me/twitch-api";
+const logoPlaceholder = "img/twitch-logo-256x256.png";
+const streamPreviewPlaceholder = "img/twitch320x180.jpeg";
+
+const channelsData = [
+    // all data from API are stored here; structure: [ { channelInfo:{}, streamInfo:{} } ]
+];
+
+const displayedChannelsNames = [
+    "ESL_SC2",
+    // "OgamingSC2",
+    // "cretetion",
+    "freecodecamp",
+    // "storbeck",
+    // "habathcx",
+    // "RobotCaleb",
+    // "noobs2ninjas"
+]; // Temporary disabled most items to prevent doing too many calls in development stage
+
+const activeChannels = [];
+const renderedChannels = []; // stores channels already rendered, prevents rendering channel more than once
+
 class channelInfo {
     constructor(channelName, channelLogo, channelContent, channelUrl, channelFollowers) {
         this.channelName = channelName;
@@ -18,33 +42,13 @@ class streamInfo {
     }
 }
 
-const API_URL = "https://wind-bow.gomix.me/twitch-api";
-const logoPlaceholder = "img/twitch-logo-256x256.png";
-const streamPreviewPlaceholder = "img/twitch320x180.jpeg";
-
-const channelsData = [
-    // structure: [ { channelInfo:{}, streamInfo:{} } ]
-];
-
-const displayedChannelsNames = [
-    "ESL_SC2",
-    // "OgamingSC2",
-    // "cretetion",
-    "freecodecamp",
-    // "storbeck",
-    // "habathcx",
-    // "RobotCaleb",
-    // "noobs2ninjas"
-]; // Temporary disabled most items to prevent doing too many calls in development stage
-
-const activeChannels = [];
-
 const getChannelsData = (channelName) => {
 
     fetchDataFromTwitchAPI(channelName, "streams")
         .then(data => passActiveChannelsDataToClass(data))
         .then(() => fetchDataFromTwitchAPI(channelName, "channels"))
         .then(data => passInactiveChannelsDataToClass(data))
+        .then(() => renderChannel())
         .catch(error => alert(error))
 
 };
@@ -106,6 +110,39 @@ const passInactiveChannelsDataToClass = (data) => {
         });
 
     }
+
+};
+
+const renderChannel = () => {
+
+  channelsData.forEach(channel => {
+      if (!renderedChannels.includes(channel)) {
+          renderedChannels.push(channel);
+          $channelsList.append(addChannelToList(channel))
+      }
+  })
+
+};
+
+const addChannelToList = (channel) => {
+
+    const { channelName, channelLogo, channelContent, channelUrl, channelFollowers } = channel.channelInfo;
+    const { isActive, streamContent, streamStatus, streamViewers, streamPreviewImg } = channel.streamInfo;
+
+    return $(`<li class="channelsList-item">
+
+                    <div id="channelsList-item-streamInfo">
+                        <a href=${channelUrl} target="_blank">
+                            <h2>${channelName}</h2>
+                            <img src=${streamPreviewImg}>
+                        </a>
+                    </div>
+                    
+                    <div id="channelsList-item-channelInfo">
+
+                    </div>
+                    
+                  </li>`)
 
 };
 
