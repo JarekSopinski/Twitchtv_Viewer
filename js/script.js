@@ -101,7 +101,7 @@ const passInactiveChannelsDataToClass = (data) => {
 
         const isActive = false;
         const streamContent = null;
-        const streamStatus = null;
+        const streamStatus = "Offline";
         const streamViewers = null;
 
         channelsData.push({
@@ -135,8 +135,19 @@ const addChannelToList = (channel) => {
     return $(`<li id="channelsList-item" style=${itemBgColor}>
 
                     <div id="channelsList-item-streamInfo">
-                        <img src=${channelLogo}>
-                        <p>${channelName}</p>
+                    
+                        <img src=${channelLogo} class="channelLogo">
+
+                        <div>
+                            <p>${streamStatus}</p>
+                            <p>${streamContent}</p>
+                            <p>Watching: ${streamViewers}</p>
+                            <a href=${channelUrl}><button>Go!</button></a>
+                            <button>Display channel's details</button>
+                        </div>
+                       
+                        <img src=${streamPreviewImg} class="streamPreview">
+
                     </div>
                     
                     <div id="channelsList-item-channelInfo">

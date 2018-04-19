@@ -17,7 +17,7 @@ $first-text: 'Black Han Sans', sans-serif;
 $second-text: 'Lato', sans-serif;
 
 body {
-  background-color: $white;
+  background-color: $yellow;
 }
 
 a {
@@ -29,7 +29,7 @@ button {
   cursor: pointer;
 }
 
-p, span {
+p, span, button, input {
   font-family: $second-text;
 }
 
@@ -45,14 +45,44 @@ h1 {
   margin: 20px;
 
   #channelsList-item {
-    min-height: 150px;
+
+    margin-bottom: 10px;
 
     #channelsList-item-streamInfo {
+      display: flex;
+      flex-flow: wrap;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      min-height: 150px;
+      padding: 20px;
+      border: 5px solid $red;
 
-      img {
-        display: inline;
+      .channelLogo {
+        display: inline-block;
         max-width: 100px;
+        margin-left: 20px;
         border-radius: 100%;
+      }
+
+      p {
+        text-align: center;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      p:first-of-type {
+        font-style: italic;
+      }
+
+      button {
+        display: block;
+        margin: auto;
+      }
+
+      .streamPreview {
+        display: inline-block;
+        height: 80%;
       }
 
     }
