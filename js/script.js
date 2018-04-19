@@ -1,9 +1,10 @@
 class channelInfo {
-    constructor(channelName, channelLogo, channelContent, channelUrl) {
+    constructor(channelName, channelLogo, channelContent, channelUrl, channelFollowers) {
         this.channelName = channelName;
         this.channelLogo = channelLogo;
         this.channelContent = channelContent;
-        this.channelUrl = channelUrl
+        this.channelUrl = channelUrl;
+        this.channelFollowers = channelFollowers
     }
 }
 
@@ -65,16 +66,17 @@ const passActiveChannelsDataToClass = (data) => {
         const channelLogo = data.stream.channel.logo || logoPlaceholder;
         const channelContent = data.stream.channel.game || "unknown";
         const channelUrl = data.stream.channel.url || "https://www.twitch.tv/";
+        const channelFollowers = data.stream.channel.followers || "unknown";
 
-        const isOnline = true;
+        const isActive = true;
         const streamContent = data.stream.game || "unknown";
         const streamStatus = data.stream.channel.status || "unknown";
         const streamViewers = data.stream.viewers || "unknown";
         const streamPreviewImg = data.stream.preview.medium || streamPreviewPlaceholder;
 
         channelsData.push({
-            "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl),
-            "streamInfo": new streamInfo(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg)
+            "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl, channelFollowers),
+            "streamInfo": new streamInfo(isActive, streamContent, streamStatus, streamViewers, streamPreviewImg)
         });
 
         activeChannels.push(channelName)
@@ -91,16 +93,17 @@ const passInactiveChannelsDataToClass = (data) => {
         const channelLogo = data.logo || logoPlaceholder;
         const channelContent = data.game || "unknown";
         const channelUrl = data.url || "https://www.twitch.tv/";
+        const channelFollowers = data.followers || "unknown";
 
-        const isOnline = false;
+        const isActive = false;
         const streamContent = null;
         const streamStatus = null;
         const streamViewers = null;
         const streamPreviewImg = null;
 
         channelsData.push({
-            "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl),
-            "streamInfo": new streamInfo(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg)
+            "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl, channelFollowers),
+            "streamInfo": new streamInfo(isActive, streamContent, streamStatus, streamViewers, streamPreviewImg)
         });
 
     }
