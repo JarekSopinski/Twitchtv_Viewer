@@ -7,11 +7,18 @@ $red: #D62828;
 $orange: #F77F00;
 $yellow: #FCBF49;
 $white: #EAE2B7;
+$blue: #5BC0EB;
+$grey: #CFD2CD;
+$green: #9BC53D;
 
 // FONTS;
 
 $first-text: 'Black Han Sans', sans-serif;
 $second-text: 'Lato', sans-serif;
+
+body {
+  background-color: $white;
+}
 
 a {
   text-decoration: none;
@@ -32,6 +39,25 @@ h1 {
   font-size: 35px;
   text-align: center;
   color: black;
+}
+
+#channelsList {
+  margin: 20px;
+
+  #channelsList-item {
+    min-height: 150px;
+
+    #channelsList-item-streamInfo {
+
+      img {
+        display: inline;
+        max-width: 100px;
+        border-radius: 100%;
+      }
+
+    }
+
+  }
 }
 
 #addChannelForm {

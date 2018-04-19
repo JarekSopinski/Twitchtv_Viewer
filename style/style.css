@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans|Lato");
+body {
+  background-color: #EAE2B7; }
+
 a {
   text-decoration: none;
   color: black; }
@@ -15,6 +18,15 @@ h1 {
   font-size: 35px;
   text-align: center;
   color: black; }
+
+#channelsList {
+  margin: 20px; }
+  #channelsList #channelsList-item {
+    min-height: 150px; }
+    #channelsList #channelsList-item #channelsList-item-streamInfo img {
+      display: inline;
+      max-width: 100px;
+      border-radius: 100%; }
 
 #addChannelForm {
   text-align: center; }
