@@ -8,8 +8,8 @@ class channelInfo {
 }
 
 class streamInfo {
-    constructor(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg) {
-        this.isOnline = isOnline;
+    constructor(isActive, streamContent, streamStatus, streamViewers, streamPreviewImg) {
+        this.isActive = isActive;
         this.streamContent = streamContent;
         this.streamStatus = streamStatus;
         this.streamViewers = streamViewers;
@@ -17,22 +17,15 @@ class streamInfo {
     }
 }
 
-const API = "https://wind-bow.gomix.me/twitch-api/";
+const API_URL = "https://wind-bow.gomix.me/twitch-api";
 const logoPlaceholder = "img/twitch-logo-256x256.png";
 const streamPreviewPlaceholder = "img/twitch320x180.jpeg";
 
 const channelsData = [
-
     // structure: [ { channelInfo:{}, streamInfo:{} } ]
-
-    {
-        "channelInfo": new channelInfo("Test channel", logoPlaceholder, "Coding", "https://freecodecamp.com"),
-        "streamInfo": new streamInfo(false, "JavaScript", "Learn to code in JS", 100, streamPreviewPlaceholder)
-    },
-
 ];
 
-const displayedChannels = [
+const displayedChannelsNames = [
     "ESL_SC2",
     "OgamingSC2",
     "cretetion",
@@ -41,65 +34,81 @@ const displayedChannels = [
     "habathcx",
     "RobotCaleb",
     "noobs2ninjas"
-]; //TODO: if user wants to display additional channel, simply push input to this array and run getChannelsData again
+]; // TODO: while testing css, I should temporary remove all but one to prevent doing too many calls
 
-const getChannelsData = (channel) => {
+const activeChannels = [];
 
-    fetchDataFromTwitchAPI(channel, "stream")
-        .then(data => passStreamDataToClass(data))
-        .catch(error => handleError(error))
+const getChannelsData = (channelName) => {
+
+    fetchDataFromTwitchAPI(channelName, "streams")
+        .then(data => passActiveChannelsDataToClass(data))
+        .then(() => fetchDataFromTwitchAPI(channelName, "channels"))
+        .then(data => passInactiveChannelsDataToClass(data))
+        .catch(error => alert(error))
 
 };
 
-const fetchDataFromTwitchAPI = (channelName, typeOfData) => {
-
-    let URL;
-    typeOfData === "stream" ?
-        URL = `${API}streams/`
-        :
-        URL = `${API}channels/`;
+const fetchDataFromTwitchAPI = (channelName, typeOfCall) => {
 
     return $.ajax({
         dataType: "jsonp", // jsonp is needed to prevent CORS problems
-        url: `${URL}${channelName}`
+        url: `${API_URL}/${typeOfCall}/${channelName}`
     })
 
 };
 
-const passStreamDataToClass = (data) => {
+const passActiveChannelsDataToClass = (data) => {
 
-    data.stream ? setActiveStreamData(data) : setStreamAsOffline(data)
+    if (data.stream) {
+
+        const channelName = data.stream.channel.display_name || "unknown";
+        const channelLogo = data.stream.channel.logo || logoPlaceholder;
+        const channelContent = data.stream.channel.game || "unknown";
+        const channelUrl = data.stream.channel.url || "https://www.twitch.tv/";
+
+        const isOnline = true;
+        const streamContent = data.stream.game || "unknown";
+        const streamStatus = data.stream.channel.status || "unknown";
+        const streamViewers = data.stream.viewers || "unknown";
+        const streamPreviewImg = data.stream.preview.medium || streamPreviewPlaceholder;
+
+        channelsData.push({
+            "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl),
+            "streamInfo": new streamInfo(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg)
+        });
+
+        activeChannels.push(channelName)
+
+    }
 
 };
 
-const setActiveStreamData = (data) => {
+const passInactiveChannelsDataToClass = (data) => {
 
-    const channelName = data.stream.channel.display_name || "unknown";
-    const channelLogo = data.stream.channel.logo || logoPlaceholder;
-    const channelContent = data.stream.channel.game || "unknown";
-    const channelUrl = data.stream.channel.url || "https://www.twitch.tv/";
+    if (!activeChannels.includes(data.display_name)) {
 
-    const isOnline = true;
-    const streamContent = data.stream.game || "unknown";
-    const streamStatus = data.stream.channel.status || "unknown";
-    const streamViewers = data.stream.viewers || "unknown";
-    const streamPreviewImg = data.stream.preview.medium || streamPreviewPlaceholder;
+        const channelName = data.display_name || "unknown";
+        const channelLogo = data.logo || logoPlaceholder;
+        const channelContent = data.game || "unknown";
+        const channelUrl = data.url || "https://www.twitch.tv/";
 
-    channelsData.push({
-        "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl),
-        "streamInfo": new streamInfo(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg)
-    })
+        const isOnline = false;
+        const streamContent = null;
+        const streamStatus = null;
+        const streamViewers = null;
+        const streamPreviewImg = null;
+
+        channelsData.push({
+            "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl),
+            "streamInfo": new streamInfo(isOnline, streamContent, streamStatus, streamViewers, streamPreviewImg)
+        });
+
+    }
 
 };
-
-const setStreamAsOffline = (data) => {
-    console.log("stream is offline");
-};
-
-const handleError = error => alert(error);
 
 $(document).ready(() => {
 
-    $(window).on( "load", displayedChannels.forEach(channel => getChannelsData(channel)))
+    $(window).on( "load", displayedChannelsNames.forEach(channelName => getChannelsData(channelName)))
 
 });
