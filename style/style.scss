@@ -8,8 +8,8 @@ $orange: #F77F00;
 $yellow: #FCBF49;
 $white: #EAE2B7;
 $blue: #5BC0EB;
-$grey: #CFD2CD;
-$green: #9BC53D;
+$dark-grey: #494949;
+$green: #20BF55;
 
 // FONTS;
 
@@ -17,7 +17,7 @@ $first-text: 'Black Han Sans', sans-serif;
 $second-text: 'Lato', sans-serif;
 
 body {
-  background-color: $yellow;
+  background-color: $dark-blue;
 }
 
 a {
@@ -33,12 +33,15 @@ p, span, button, input {
   font-family: $second-text;
 }
 
+h1, h2 {
+  font-family: $first-text;
+}
+
 h1 {
   margin: 25px 25px 0 25px;
-  font-family: $first-text;
   font-size: 35px;
   text-align: center;
-  color: black;
+  color: $white;
 }
 
 #channelsList {
@@ -49,14 +52,16 @@ h1 {
       min-height: 300px;
       margin-bottom: 10px;
       padding: 20px;
-      border: 5px solid $red;
+      border: 5px solid $white;
 
       #channelLogo {
         display: block;
         margin: auto;
         padding-bottom: 20px;
         max-width: 100px;
+        border: 5px solid $white;
         border-radius: 100%;
+
       }
 
       #streamDetails {
@@ -65,7 +70,7 @@ h1 {
         padding-bottom: 20px;
       }
 
-      p {
+      h2, p {
         text-align: center;
         display: block;
         margin-bottom: 10px;
@@ -84,6 +89,8 @@ h1 {
         display: block;
         margin: auto;
         width: 90%;
+        border: 5px solid $white;
+        border-radius: 10%;
       }
 
     }
@@ -92,6 +99,14 @@ h1 {
 
 #addChannelForm {
   text-align: center;
+  margin-bottom: 10px;
+
+  span {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: $white;
+  }
+
 }
 
 footer {
@@ -104,11 +119,19 @@ footer {
   }
 
   span:first-of-type {
-    color: $dark-blue;
+    color: $white;
   }
 
   span:last-of-type {
-    color: $red;
+    color: $orange;
+  }
+
+}
+
+@media screen and (min-width: 576px) {
+
+  #streamPreview {
+    width: 50% !important;
   }
 
 }
@@ -126,9 +149,8 @@ footer {
 
       #channelLogo {
         display: inline-block;
-        margin: 0;
+        margin: 0 0 0 20px;
         padding-bottom: 0;
-        padding-left: 20px;
 
       }
 
@@ -140,13 +162,19 @@ footer {
       #streamPreview {
         display: inline-block;
         margin: 0;
-        height: 80%;
         max-width: 320px;
       }
 
     }
 
   }
+
+  #addChannelForm {
+    span {
+      margin-right: 10px;
+    }
+  }
+
 }
 
 @media screen and (min-width: 992px) {

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Black+Han+Sans|Lato");
 body {
-  background-color: #FCBF49; }
+  background-color: #003049; }
 
 a {
   text-decoration: none;
@@ -12,12 +12,14 @@ button {
 p, span, button, input {
   font-family: "Lato", sans-serif; }
 
+h1, h2 {
+  font-family: "Black Han Sans", sans-serif; }
+
 h1 {
   margin: 25px 25px 0 25px;
-  font-family: "Black Han Sans", sans-serif;
   font-size: 35px;
   text-align: center;
-  color: black; }
+  color: #EAE2B7; }
 
 #channelsList {
   margin: 20px; }
@@ -25,18 +27,19 @@ h1 {
     min-height: 300px;
     margin-bottom: 10px;
     padding: 20px;
-    border: 5px solid #D62828; }
+    border: 5px solid #EAE2B7; }
     #channelsList #channelsList-item-streamInfo #channelLogo {
       display: block;
       margin: auto;
       padding-bottom: 20px;
       max-width: 100px;
+      border: 5px solid #EAE2B7;
       border-radius: 100%; }
     #channelsList #channelsList-item-streamInfo #streamDetails {
       display: block;
       margin: auto;
       padding-bottom: 20px; }
-    #channelsList #channelsList-item-streamInfo p {
+    #channelsList #channelsList-item-streamInfo h2, #channelsList #channelsList-item-streamInfo p {
       text-align: center;
       display: block;
       margin-bottom: 10px; }
@@ -48,10 +51,17 @@ h1 {
     #channelsList #channelsList-item-streamInfo #streamPreview {
       display: block;
       margin: auto;
-      width: 90%; }
+      width: 90%;
+      border: 5px solid #EAE2B7;
+      border-radius: 10%; }
 
 #addChannelForm {
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 10px; }
+  #addChannelForm span {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #EAE2B7; }
 
 footer {
   text-align: center;
@@ -60,10 +70,13 @@ footer {
     font-style: italic;
     font-size: 15px; }
   footer span:first-of-type {
-    color: #003049; }
+    color: #EAE2B7; }
   footer span:last-of-type {
-    color: #D62828; }
+    color: #F77F00; }
 
+@media screen and (min-width: 576px) {
+  #streamPreview {
+    width: 50% !important; } }
 @media screen and (min-width: 768px) {
   #channelsList #channelsList-item-streamInfo {
     display: flex;
@@ -73,17 +86,18 @@ footer {
     min-height: 150px; }
     #channelsList #channelsList-item-streamInfo #channelLogo {
       display: inline-block;
-      margin: 0;
-      padding-bottom: 0;
-      padding-left: 20px; }
+      margin: 0 0 0 20px;
+      padding-bottom: 0; }
     #channelsList #channelsList-item-streamInfo #streamDetails {
       max-width: 200px;
       margin: 0; }
     #channelsList #channelsList-item-streamInfo #streamPreview {
       display: inline-block;
       margin: 0;
-      height: 80%;
-      max-width: 320px; } }
+      max-width: 320px; }
+
+  #addChannelForm span {
+    margin-right: 10px; } }
 @media screen and (min-width: 992px) {
   #streamDetails {
     max-width: 350px; } }

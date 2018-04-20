@@ -1,3 +1,13 @@
+/*TODO:
+1) Adding new channel
+2) Error handling (new channel name)
+3) Refactor names is DOM
+4) Better colors
+5) Round logo
+6) Rest of styles
+7) New channels list
+*/
+
 const $channelsList = $("#channelsList");
 
 const API_URL = "https://wind-bow.gomix.me/twitch-api";
@@ -127,7 +137,7 @@ const addChannelToList = (channel) => {
     const { isActive, streamStatus, streamViewers, streamPreviewImg } = channel.streamInfo;
 
     let itemBgColor;
-    isActive ? itemBgColor = "background-color:#9BC53D" : itemBgColor = "background-color:#CFD2CD";
+    isActive ? itemBgColor = "background-color:#9BC53D" : itemBgColor = "background-color:#7C7A7A";
 
     return $(`<li id="channelsList-item" style=${itemBgColor}>
                     <a href=${channelUrl}>
@@ -136,7 +146,7 @@ const addChannelToList = (channel) => {
                             <img src=${channelLogo} id="channelLogo">
     
                             <div id="streamDetails">
-                                <p>${channelName}</p>
+                                <h2>${channelName}</h2>
                                 <p>Status: ${streamStatus}</p>
                                 <p>${channelContent}</p>
                                 <p>Watching: ${streamViewers}</p>
