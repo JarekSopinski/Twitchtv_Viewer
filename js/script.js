@@ -20,7 +20,7 @@ const displayedChannelsNames = [
 ]; // Temporary disabled most items to prevent doing too many calls in development stage
 
 const activeChannels = [];
-const renderedChannels = []; // stores channels already rendered, prevents rendering channel more than once
+const renderedChannels = [];
 
 class channelInfo {
     constructor(channelName, channelLogo, channelContent, channelUrl, channelFollowers) {
@@ -33,9 +33,8 @@ class channelInfo {
 }
 
 class streamInfo {
-    constructor(isActive, streamContent, streamStatus, streamViewers, streamPreviewImg) {
+    constructor(isActive, streamStatus, streamViewers, streamPreviewImg) {
         this.isActive = isActive;
-        this.streamContent = streamContent;
         this.streamStatus = streamStatus;
         this.streamViewers = streamViewers;
         this.streamPreviewImg = streamPreviewImg
@@ -73,14 +72,13 @@ const passActiveChannelsDataToClass = (data) => {
         const channelFollowers = data.stream.channel.followers || "unknown";
 
         const isActive = true;
-        const streamContent = data.stream.game || "unknown";
         const streamStatus = data.stream.channel.status || "unknown";
         const streamViewers = data.stream.viewers || "unknown";
         const streamPreviewImg = data.stream.preview.medium || streamPreviewPlaceholder;
 
         channelsData.push({
             "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl, channelFollowers),
-            "streamInfo": new streamInfo(isActive, streamContent, streamStatus, streamViewers, streamPreviewImg)
+            "streamInfo": new streamInfo(isActive, streamStatus, streamViewers, streamPreviewImg)
         });
 
         activeChannels.push(channelName)
@@ -93,20 +91,19 @@ const passInactiveChannelsDataToClass = (data) => {
 
     if (!activeChannels.includes(data.display_name)) {
 
-        const channelName = data.display_name || "unknown";
+        const channelName = data.display_name || "";
         const channelLogo = data.logo || logoPlaceholder;
-        const channelContent = data.game || "unknown";
-        const channelUrl = data.url || "https://www.twitch.tv/";
-        const channelFollowers = data.followers || "unknown";
+        const channelContent = data.game || "";
+        const channelUrl = data.url || "#";
+        const channelFollowers = data.followers || "";
 
         const isActive = false;
-        const streamContent = null;
         const streamStatus = "Offline";
-        const streamViewers = null;
+        const streamViewers = 0;
 
         channelsData.push({
             "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl, channelFollowers),
-            "streamInfo": new streamInfo(isActive, streamContent, streamStatus, streamViewers, streamPreviewPlaceholder)
+            "streamInfo": new streamInfo(isActive, streamStatus, streamViewers, streamPreviewPlaceholder)
         });
 
     }
@@ -127,33 +124,29 @@ const renderChannel = () => {
 const addChannelToList = (channel) => {
 
     const { channelName, channelLogo, channelContent, channelUrl, channelFollowers } = channel.channelInfo;
-    const { isActive, streamContent, streamStatus, streamViewers, streamPreviewImg } = channel.streamInfo;
+    const { isActive, streamStatus, streamViewers, streamPreviewImg } = channel.streamInfo;
 
     let itemBgColor;
     isActive ? itemBgColor = "background-color:#9BC53D" : itemBgColor = "background-color:#CFD2CD";
 
     return $(`<li id="channelsList-item" style=${itemBgColor}>
-
-                    <div id="channelsList-item-streamInfo">
-                    
-                        <img src=${channelLogo} class="channelLogo">
-
-                        <div>
-                            <p>${streamStatus}</p>
-                            <p>${streamContent}</p>
-                            <p>Watching: ${streamViewers}</p>
-                            <a href=${channelUrl}><button>Go!</button></a>
-                            <button>Display channel's details</button>
+                    <a href=${channelUrl}>
+                        <div id="channelsList-item-streamInfo">
+                        
+                            <img src=${channelLogo} class="channelLogo">
+    
+                            <div>
+                                <p>${channelName}</p>
+                                <p>Status: ${streamStatus}</p>
+                                <p>${channelContent}</p>
+                                <p>Watching: ${streamViewers}</p>
+                                <p>Followers: ${channelFollowers}</p>
+                            </div>
+                           
+                            <img src=${streamPreviewImg} class="streamPreview">
+    
                         </div>
-                       
-                        <img src=${streamPreviewImg} class="streamPreview">
-
-                    </div>
-                    
-                    <div id="channelsList-item-channelInfo">
-
-                    </div>
-                    
+                    </a>              
                   </li>`)
 
 };

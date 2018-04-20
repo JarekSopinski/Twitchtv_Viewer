@@ -21,34 +21,33 @@ h1 {
 
 #channelsList {
   margin: 20px; }
-  #channelsList #channelsList-item {
-    margin-bottom: 10px; }
-    #channelsList #channelsList-item #channelsList-item-streamInfo {
-      display: flex;
-      flex-flow: wrap;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      min-height: 150px;
-      padding: 20px;
-      border: 5px solid #D62828; }
-      #channelsList #channelsList-item #channelsList-item-streamInfo .channelLogo {
-        display: inline-block;
-        max-width: 100px;
-        margin-left: 20px;
-        border-radius: 100%; }
-      #channelsList #channelsList-item #channelsList-item-streamInfo p {
-        text-align: center;
-        display: block;
-        margin-bottom: 10px; }
-      #channelsList #channelsList-item #channelsList-item-streamInfo p:first-of-type {
-        font-style: italic; }
-      #channelsList #channelsList-item #channelsList-item-streamInfo button {
-        display: block;
-        margin: auto; }
-      #channelsList #channelsList-item #channelsList-item-streamInfo .streamPreview {
-        display: inline-block;
-        height: 80%; }
+  #channelsList #channelsList-item-streamInfo {
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    min-height: 150px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 5px solid #D62828; }
+    #channelsList #channelsList-item-streamInfo .channelLogo {
+      display: inline-block;
+      max-width: 100px;
+      margin-left: 20px;
+      border-radius: 100%; }
+    #channelsList #channelsList-item-streamInfo p {
+      text-align: center;
+      display: block;
+      margin-bottom: 10px; }
+    #channelsList #channelsList-item-streamInfo p:nth-child(2) {
+      font-style: italic; }
+    #channelsList #channelsList-item-streamInfo button {
+      display: block;
+      margin: auto; }
+    #channelsList #channelsList-item-streamInfo .streamPreview {
+      display: inline-block;
+      height: 80%; }
 
 #addChannelForm {
   text-align: center; }
