@@ -9,7 +9,7 @@ a {
 button {
   cursor: pointer; }
 
-p, span, button, input {
+p, span, button, input, select {
   font-family: "Lato", sans-serif; }
 
 h1, h2, h3 {
@@ -21,12 +21,17 @@ h1 {
   text-align: center;
   color: #EAE2B7; }
 
-#activeChannelsCounter h2 {
+.channelsSelectContainer h2 {
   text-align: center;
   font-size: 25px;
   color: #EAE2B7; }
-#activeChannelsCounter h2:nth-child(2) {
+.channelsSelectContainer h2:nth-child(2) {
   color: #20BF55; }
+.channelsSelectContainer select {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  height: 25px; }
 
 #channelsList {
   margin: 20px; }

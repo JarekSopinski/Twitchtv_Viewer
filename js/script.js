@@ -10,7 +10,7 @@ DONE 6) Rest of styles
 DONE 9) List how many are online
 */
 
-const $activeChannelsCounter = $("#activeChannelsCounter");
+const $channelsCounter = $("#channelsCounter");
 const $channelsList = $("#channelsList");
 
 const API_URL = "https://wind-bow.gomix.me/twitch-api";
@@ -178,8 +178,8 @@ const updateActiveChannelsCounter = (channelsCount) => {
 
     const { activeChannels, inactiveChannels, allChannels } = channelsCount;
 
-    $activeChannelsCounter.empty();
-    $activeChannelsCounter.append(`
+    $channelsCounter.empty();
+    $channelsCounter.append(`
             <h2>All: ${allChannels}</h2>
             <h2>Online: ${activeChannels}</h2>
             <h2>Offline: ${inactiveChannels}</h2>

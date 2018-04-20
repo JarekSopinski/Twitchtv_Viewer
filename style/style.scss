@@ -29,7 +29,7 @@ button {
   cursor: pointer;
 }
 
-p, span, button, input {
+p, span, button, input, select {
   font-family: $second-text;
 }
 
@@ -44,7 +44,7 @@ h1 {
   color: $white;
 }
 
-#activeChannelsCounter {
+.channelsSelectContainer {
 
   h2 {
     text-align: center;
@@ -54,6 +54,13 @@ h1 {
 
   h2:nth-child(2) {
     color: $green;
+  }
+
+  select {
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    height: 25px;
   }
 
 }
