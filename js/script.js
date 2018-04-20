@@ -28,14 +28,13 @@ const channelsData = [
 
 const displayedChannelsNames = [
     "ESL_SC2",
-    // "OgamingSC2",
-    // "cretetion",
+    "OgamingSC2",
     "freecodecamp",
-    // "storbeck",
-    // "habathcx",
-    // "RobotCaleb",
-    // "noobs2ninjas"
-]; // Temporary disabled most items to prevent doing too many calls in development stage
+    "RobotCaleb",
+    "ninja",
+    "OverwatchLeague",
+    "EASPORTSFIFA"
+];
 
 const activeChannels = [];
 const inactiveChannels = [];
