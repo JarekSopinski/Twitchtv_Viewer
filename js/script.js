@@ -11,6 +11,7 @@ DONE 9) List how many are online
 */
 
 const $channelsCounter = $("#channelsCounter");
+const $channelsSelect = $("#channelsSelect");
 const $channelsList = $("#channelsList");
 
 const API_URL = "https://wind-bow.gomix.me/twitch-api";
@@ -144,7 +145,7 @@ const renderChannel = () => {
 
 };
 
-const addChannelToList = (channel) => {
+const addChannelToList = (channel, filter) => {
 
     const { channelName, channelLogo, channelContent, channelUrl, channelFollowers } = channel.channelInfo;
     const { isActive, streamStatus, streamViewers, streamPreviewImg } = channel.streamInfo;
@@ -187,8 +188,33 @@ const updateActiveChannelsCounter = (channelsCount) => {
 
 };
 
+const filterDisplayedChannels = (filter) => {
+
+    switch (filter) {
+        case "active":
+            console.log(filter);
+            $channelsList.empty();
+            break;
+        case "inactive":
+            console.log(filter);
+            $channelsList.empty();
+            break;
+        default:
+            $channelsList.empty();
+            channelsData.forEach(channel => $channelsList.append(addChannelToList(channel)))
+    }
+
+};
+
+const renderFilteredList = (filter) => {
+
+
+
+};
+
 $(document).ready(() => {
 
     $(window).on( "load", displayedChannelsNames.forEach(channelName => getChannelsData(channelName)));
+    $channelsSelect.on("change", () => filterDisplayedChannels($channelsSelect.val()))
 
 });
