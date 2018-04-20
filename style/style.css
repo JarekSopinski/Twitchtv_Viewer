@@ -31,7 +31,7 @@ h1 {
     #channelsList #channelsList-item-streamInfo #channelLogo {
       display: block;
       margin: auto;
-      padding-bottom: 20px;
+      margin-bottom: 20px;
       max-width: 100px;
       border: 5px solid #EAE2B7;
       border-radius: 100%; }
@@ -87,7 +87,8 @@ footer {
     flex-flow: wrap;
     align-items: center;
     justify-content: space-between;
-    min-height: 150px; }
+    min-height: 150px;
+    transition: background-color, 1s; }
     #channelsList #channelsList-item-streamInfo #channelLogo {
       display: inline-block;
       margin: 0 0 0 20px;
@@ -99,6 +100,8 @@ footer {
       display: inline-block;
       margin: 0;
       max-width: 320px; }
+  #channelsList #channelsList-item-streamInfo:hover {
+    background-color: #F77F00; }
 
   #addChannelForm span {
     margin-right: 10px; } }
