@@ -1,7 +1,7 @@
 /*TODO:
 DONE 1) Adding new channel
 DONE 2) Error handling (new channel name)
-3) Refactor names is DOM
+DONE 3) Refactor names is DOM
 DONE 4) Better colors
 DONE 5) Round logo
 DONE 6) Rest of styles
@@ -182,13 +182,13 @@ const addChannelToList = (channel) => {
     let itemBgColor;
     isActive ? itemBgColor = "background-color:#9BC53D" : itemBgColor = "background-color:#7C7A7A";
 
-    return $(`<li id="channelsList-item" style=${itemBgColor}>
+    return $(`<li style=${itemBgColor}>
                     <a href=${channelUrl} target="_blank">
-                        <div id="channelsList-item-streamInfo">
+                        <div class="channelsListItem">
                         
-                            <img src=${channelLogo} id="channelLogo">
+                            <img src=${channelLogo} class="channelLogo">
     
-                            <div id="streamDetails">
+                            <div class="streamDetails">
                                 <h2>${channelName}</h2>
                                 <h3>${channelContent}</h3>
                                 <p>${streamStatus}</p>
@@ -196,7 +196,7 @@ const addChannelToList = (channel) => {
                                 <p>Followers: ${channelFollowers}</p>
                             </div>
                            
-                            <img src=${streamPreviewImg} id="streamPreview">
+                            <img src=${streamPreviewImg} class="streamPreview">
     
                         </div>
                     </a>              

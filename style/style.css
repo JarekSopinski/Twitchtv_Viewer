@@ -33,48 +33,48 @@ h1 {
   margin-top: 10px;
   height: 25px; }
 
-#channelsList {
+.channelsList {
   margin: 20px; }
-  #channelsList #channelsList-item-streamInfo {
+  .channelsList .channelsListItem {
     min-height: 300px;
     margin-bottom: 10px;
     padding: 20px;
     border: 5px solid #EAE2B7; }
-    #channelsList #channelsList-item-streamInfo #channelLogo {
+    .channelsList .channelsListItem .channelLogo {
       display: block;
       margin: auto;
       margin-bottom: 20px;
       max-width: 100px;
       border: 5px solid #EAE2B7;
       border-radius: 100%; }
-    #channelsList #channelsList-item-streamInfo #streamDetails {
+    .channelsList .channelsListItem .streamDetails {
       display: block;
       margin: auto;
       padding-bottom: 20px; }
-    #channelsList #channelsList-item-streamInfo h2 {
+    .channelsList .channelsListItem h2 {
       font-size: 25px; }
-    #channelsList #channelsList-item-streamInfo h2, #channelsList #channelsList-item-streamInfo h3, #channelsList #channelsList-item-streamInfo p {
+    .channelsList .channelsListItem h2, .channelsList .channelsListItem h3, .channelsList .channelsListItem p {
       text-align: center;
       display: block;
       margin-bottom: 10px; }
-    #channelsList #channelsList-item-streamInfo p:first-of-type {
+    .channelsList .channelsListItem p:first-of-type {
       font-style: italic; }
-    #channelsList #channelsList-item-streamInfo p:last-of-type {
+    .channelsList .channelsListItem p:last-of-type {
       margin-bottom: 0; }
-    #channelsList #channelsList-item-streamInfo button {
+    .channelsList .channelsListItem button {
       display: block;
       margin: auto; }
-    #channelsList #channelsList-item-streamInfo #streamPreview {
+    .channelsList .channelsListItem .streamPreview {
       display: block;
       margin: auto;
       width: 90%;
       border: 5px solid #EAE2B7;
       border-radius: 10%; }
 
-#addChannelForm {
+.addChannelForm {
   text-align: center;
   margin-bottom: 10px; }
-  #addChannelForm span {
+  .addChannelForm span {
     display: inline-block;
     margin-bottom: 10px;
     color: #EAE2B7; }
@@ -92,37 +92,37 @@ footer {
     color: #F77F00; }
 
 @media screen and (min-width: 576px) {
-  #streamPreview {
+  .streamPreview {
     width: 50% !important; } }
 @media screen and (min-width: 768px) {
-  #channelsList #channelsList-item-streamInfo {
+  .channelsList .channelsListItem {
     display: flex;
     flex-flow: wrap;
     align-items: center;
     justify-content: space-between;
     min-height: 150px;
     transition: background-color, 1s; }
-    #channelsList #channelsList-item-streamInfo #channelLogo {
+    .channelsList .channelsListItem .channelLogo {
       display: inline-block;
       margin: 0 0 0 20px;
       padding-bottom: 0; }
-    #channelsList #channelsList-item-streamInfo #streamDetails {
+    .channelsList .channelsListItem .streamDetails {
       max-width: 200px;
       margin: 0; }
-    #channelsList #channelsList-item-streamInfo #streamPreview {
+    .channelsList .channelsListItem .streamPreview {
       display: inline-block;
       margin: 0;
       max-width: 320px; }
-  #channelsList #channelsList-item-streamInfo:hover {
+  .channelsList .channelsListItem:hover {
     background-color: #F77F00; }
 
-  #addChannelForm span {
+  .addChannelForm span {
     margin-right: 10px; } }
 @media screen and (min-width: 992px) {
-  #streamDetails {
+  .streamDetails {
     max-width: 350px; } }
 @media screen and (min-width: 1200px) {
-  #streamDetails {
+  .streamDetails {
     max-width: 600px; } }
 
 /*# sourceMappingURL=style.css.map */
