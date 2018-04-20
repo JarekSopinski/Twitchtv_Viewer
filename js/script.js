@@ -1,15 +1,3 @@
-/*TODO:
-DONE 1) Adding new channel
-DONE 2) Error handling (new channel name)
-DONE 3) Refactor names is DOM
-DONE 4) Better colors
-DONE 5) Round logo
-DONE 6) Rest of styles
-7) New channels list
-DONE 8) Display all / online / offline
-DONE 9) List how many are online
-*/
-
 const $channelsCounter = $("#channelsCounter");
 const $channelsSelect = $("#channelsSelect");
 const $channelsList = $("#channelsList");
