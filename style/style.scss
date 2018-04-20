@@ -45,21 +45,24 @@ h1 {
   margin: 20px;
 
     #channelsList-item-streamInfo {
-      display: flex;
-      flex-flow: wrap;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      min-height: 150px;
+
+      min-height: 300px;
       margin-bottom: 10px;
       padding: 20px;
       border: 5px solid $red;
 
       .channelLogo {
-        display: inline-block;
+        display: block;
+        margin: auto;
+        padding-bottom: 20px;
         max-width: 100px;
-        margin-left: 20px;
         border-radius: 100%;
+      }
+
+      div {
+        display: block;
+        margin: auto;
+        padding-bottom: 20px;
       }
 
       p {
@@ -78,15 +81,15 @@ h1 {
       }
 
       .streamPreview {
-        display: inline-block;
-        height: 80%;
+        display: block;
+        margin: auto;
+        width: 90%;
         //dont display on mobile???
       }
 
     }
 
   }
-}
 
 #addChannelForm {
   text-align: center;
@@ -109,4 +112,31 @@ footer {
     color: $red;
   }
 
+}
+
+@media screen and (min-width: 576px) {
+
+  #channelsList {
+
+
+    #channelsList-item-streamInfo {
+
+
+      .channelLogo {
+
+      }
+
+      p {
+
+      }
+
+      button {
+      }
+
+      .streamPreview {
+      }
+
+    }
+
+  }
 }

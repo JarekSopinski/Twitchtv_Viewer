@@ -22,20 +22,20 @@ h1 {
 #channelsList {
   margin: 20px; }
   #channelsList #channelsList-item-streamInfo {
-    display: flex;
-    flex-flow: wrap;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    min-height: 150px;
+    min-height: 300px;
     margin-bottom: 10px;
     padding: 20px;
     border: 5px solid #D62828; }
     #channelsList #channelsList-item-streamInfo .channelLogo {
-      display: inline-block;
+      display: block;
+      margin: auto;
+      padding-bottom: 20px;
       max-width: 100px;
-      margin-left: 20px;
       border-radius: 100%; }
+    #channelsList #channelsList-item-streamInfo div {
+      display: block;
+      margin: auto;
+      padding-bottom: 20px; }
     #channelsList #channelsList-item-streamInfo p {
       text-align: center;
       display: block;
@@ -46,8 +46,9 @@ h1 {
       display: block;
       margin: auto; }
     #channelsList #channelsList-item-streamInfo .streamPreview {
-      display: inline-block;
-      height: 80%; }
+      display: block;
+      margin: auto;
+      width: 90%; }
 
 #addChannelForm {
   text-align: center; }
