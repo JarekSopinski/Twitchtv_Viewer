@@ -23,11 +23,10 @@ h1 {
 
 #activeChannelsCounter h2 {
   text-align: center;
-  font-size: 25px; }
-#activeChannelsCounter h2:first-of-type {
-  color: #20BF55; }
-#activeChannelsCounter h2:last-of-type {
+  font-size: 25px;
   color: #EAE2B7; }
+#activeChannelsCounter h2:nth-child(2) {
+  color: #20BF55; }
 
 #channelsList {
   margin: 20px; }

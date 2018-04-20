@@ -49,15 +49,13 @@ h1 {
   h2 {
     text-align: center;
     font-size: 25px;
+    color: $white;
   }
 
-  h2:first-of-type {
+  h2:nth-child(2) {
     color: $green;
   }
 
-  h2:last-of-type {
-    color: $white;
-  }
 }
 
 #channelsList {

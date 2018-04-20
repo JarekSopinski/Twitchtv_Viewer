@@ -2,12 +2,12 @@
 1) Adding new channel
 2) Error handling (new channel name)
 3) Refactor names is DOM
-4) Better colors
-5) Round logo
-6) Rest of styles
+DONE 4) Better colors
+DONE 5) Round logo
+DONE 6) Rest of styles
 7) New channels list
 8) Display all / online / offline
-9) List how many are online
+DONE 9) List how many are online
 */
 
 const $activeChannelsCounter = $("#activeChannelsCounter");
@@ -138,7 +138,8 @@ const renderChannel = () => {
 
   return {
       activeChannels: activeChannels.length,
-      inactiveChannels: inactiveChannels.length
+      inactiveChannels: inactiveChannels.length,
+      allChannels: channelsData.length
   };
 
 };
@@ -175,10 +176,11 @@ const addChannelToList = (channel) => {
 
 const updateActiveChannelsCounter = (channelsCount) => {
 
-    const { activeChannels, inactiveChannels } = channelsCount;
+    const { activeChannels, inactiveChannels, allChannels } = channelsCount;
 
     $activeChannelsCounter.empty();
     $activeChannelsCounter.append(`
+            <h2>All: ${allChannels}</h2>
             <h2>Online: ${activeChannels}</h2>
             <h2>Offline: ${inactiveChannels}</h2>
 `)
