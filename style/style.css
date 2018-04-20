@@ -12,7 +12,7 @@ button {
 p, span, button, input {
   font-family: "Lato", sans-serif; }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: "Black Han Sans", sans-serif; }
 
 h1 {
@@ -39,12 +39,16 @@ h1 {
       display: block;
       margin: auto;
       padding-bottom: 20px; }
-    #channelsList #channelsList-item-streamInfo h2, #channelsList #channelsList-item-streamInfo p {
+    #channelsList #channelsList-item-streamInfo h2 {
+      font-size: 25px; }
+    #channelsList #channelsList-item-streamInfo h2, #channelsList #channelsList-item-streamInfo h3, #channelsList #channelsList-item-streamInfo p {
       text-align: center;
       display: block;
       margin-bottom: 10px; }
-    #channelsList #channelsList-item-streamInfo p:nth-child(2) {
+    #channelsList #channelsList-item-streamInfo p:first-of-type {
       font-style: italic; }
+    #channelsList #channelsList-item-streamInfo p:last-of-type {
+      margin-bottom: 0; }
     #channelsList #channelsList-item-streamInfo button {
       display: block;
       margin: auto; }

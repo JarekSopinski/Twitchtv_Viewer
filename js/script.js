@@ -147,8 +147,8 @@ const addChannelToList = (channel) => {
     
                             <div id="streamDetails">
                                 <h2>${channelName}</h2>
+                                <h3>${channelContent}</h3>
                                 <p>Status: ${streamStatus}</p>
-                                <p>${channelContent}</p>
                                 <p>Watching: ${streamViewers}</p>
                                 <p>Followers: ${channelFollowers}</p>
                             </div>
