@@ -74,7 +74,7 @@ const passActiveChannelsDataToClass = (data) => {
         const isActive = true;
         const streamStatus = data.stream.channel.status || "unknown";
         const streamViewers = data.stream.viewers || "unknown";
-        const streamPreviewImg = data.stream.preview.medium || streamPreviewPlaceholder;
+        const streamPreviewImg = data.stream.preview.large || streamPreviewPlaceholder;
 
         channelsData.push({
             "channelInfo": new channelInfo(channelName, channelLogo, channelContent, channelUrl, channelFollowers),
@@ -133,9 +133,9 @@ const addChannelToList = (channel) => {
                     <a href=${channelUrl}>
                         <div id="channelsList-item-streamInfo">
                         
-                            <img src=${channelLogo} class="channelLogo">
+                            <img src=${channelLogo} id="channelLogo">
     
-                            <div>
+                            <div id="streamDetails">
                                 <p>${channelName}</p>
                                 <p>Status: ${streamStatus}</p>
                                 <p>${channelContent}</p>
@@ -143,7 +143,7 @@ const addChannelToList = (channel) => {
                                 <p>Followers: ${channelFollowers}</p>
                             </div>
                            
-                            <img src=${streamPreviewImg} class="streamPreview">
+                            <img src=${streamPreviewImg} id="streamPreview">
     
                         </div>
                     </a>              
