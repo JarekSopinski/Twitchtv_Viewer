@@ -1,6 +1,6 @@
 /*TODO:
 DONE 1) Adding new channel
-2) Error handling (new channel name)
+DONE 2) Error handling (new channel name)
 3) Refactor names is DOM
 DONE 4) Better colors
 DONE 5) Round logo
@@ -17,6 +17,8 @@ const $newChannelInput = $("#newChannelInput");
 const $newChannelBtn = $("#newChannelBtn");
 
 const API_URL = "https://wind-bow.gomix.me/twitch-api";
+const wrongChannelNameMsg = "Couldn't find this channel. Remember to input exact channel's name.";
+const defaultErrorMsg = "An error occurred. It might be a server error or you might be offline. Please check your connection.";
 const logoPlaceholder = "img/twitch-logo-256x256.png";
 const streamPreviewPlaceholder = "img/twitch320x180.jpeg";
 
@@ -66,7 +68,7 @@ const getChannelsData = (channelName) => {
         .then(data => passInactiveChannelsDataToClass(data))
         .then(() => renderChannel("all"))
         .then((channelsCount) => updateActiveChannelsCounter(channelsCount))
-        .catch(error => alert(error))
+        .catch(error => alert(defaultErrorMsg))
 
 };
 
@@ -81,17 +83,17 @@ const fetchDataFromTwitchAPI = (channelName, typeOfCall) => {
 
 const passActiveChannelsDataToClass = (data) => {
 
-    if (data.stream) {
+    if (data.stream && data.stream.channel.display_name) {
 
-        const channelName = data.stream.channel.display_name || "unknown";
+        const channelName = data.stream.channel.display_name;
         const channelLogo = data.stream.channel.logo || logoPlaceholder;
-        const channelContent = data.stream.channel.game || "unknown";
-        const channelUrl = data.stream.channel.url || "https://www.twitch.tv/";
-        const channelFollowers = data.stream.channel.followers || "unknown";
+        const channelContent = data.stream.channel.game || "";
+        const channelUrl = data.stream.channel.url || "#";
+        const channelFollowers = data.stream.channel.followers || "";
 
         const isActive = true;
-        const streamStatus = data.stream.channel.status || "unknown";
-        const streamViewers = data.stream.viewers || "unknown";
+        const streamStatus = data.stream.channel.status || "";
+        const streamViewers = data.stream.viewers || "";
         const streamPreviewImg = data.stream.preview.large || streamPreviewPlaceholder;
 
         channelsData.push({
@@ -107,9 +109,11 @@ const passActiveChannelsDataToClass = (data) => {
 
 const passInactiveChannelsDataToClass = (data) => {
 
-    if (!activeChannels.includes(data.display_name)) {
+    if(!data.display_name) { alert(wrongChannelNameMsg) }
 
-        const channelName = data.display_name || "";
+    if (!activeChannels.includes(data.display_name) && data.display_name) {
+
+        const channelName = data.display_name;
         const channelLogo = data.logo || logoPlaceholder;
         const channelContent = data.game || "";
         const channelUrl = data.url || "#";
@@ -124,7 +128,7 @@ const passInactiveChannelsDataToClass = (data) => {
             "streamInfo": new streamInfo(isActive, streamStatus, streamViewers, streamPreviewPlaceholder)
         });
 
-        inactiveChannels.push(channelName)
+        inactiveChannels.push(channelName);
 
     }
 
@@ -235,10 +239,7 @@ const handleInitialRendering = () => displayedChannelsNames.forEach(channelName 
 const handleChannelsSelect = () => filterDisplayedChannels($channelsSelect.val());
 const handleNewChannelBtn = () => getChannelsData($newChannelInput.val());
 
-$(document).ready(() => {
 
-    $(window).on( "load", handleInitialRendering);
-    $channelsSelect.on("change", handleChannelsSelect);
-    $newChannelBtn.on("click", handleNewChannelBtn)
-
-});
+$(window).on( "load", handleInitialRendering);
+$channelsSelect.on("change", handleChannelsSelect);
+$newChannelBtn.on("click", handleNewChannelBtn)
