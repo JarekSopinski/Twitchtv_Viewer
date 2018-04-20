@@ -62,7 +62,7 @@ const getChannelsData = (channelName) => {
         .then(data => passActiveChannelsDataToClass(data))
         .then(() => fetchDataFromTwitchAPI(channelName, "channels"))
         .then(data => passInactiveChannelsDataToClass(data))
-        .then(() => renderChannel())
+        .then(() => renderChannel("all"))
         .then((channelsCount) => updateActiveChannelsCounter(channelsCount))
         .catch(error => alert(error))
 
@@ -128,14 +128,37 @@ const passInactiveChannelsDataToClass = (data) => {
 
 };
 
-const renderChannel = () => {
+const renderChannel = (filter) => {
 
-  channelsData.forEach(channel => {
-      if (!renderedChannels.includes(channel)) {
-          renderedChannels.push(channel);
-          $channelsList.append(addChannelToList(channel))
-      }
-  });
+    if (filter === "active") {
+
+        channelsData.forEach(channel => {
+
+            if (channel.streamInfo.isActive) {
+                $channelsList.append(addChannelToList(channel))
+            }
+
+        });
+
+    } else if (filter === "inactive") {
+
+        channelsData.forEach(channel => {
+            if (!channel.streamInfo.isActive) {
+                $channelsList.append(addChannelToList(channel))
+            }
+        });
+
+    } else {
+        // displaying all, but only after fetching data from API
+        // displaying all after changing select's value works directly from filterDisplayedChannels()!
+        channelsData.forEach(channel => {
+            if (!renderedChannels.includes(channel)) {
+                renderedChannels.push(channel);
+                $channelsList.append(addChannelToList(channel))
+            }
+        });
+
+    }
 
   return {
       activeChannels: activeChannels.length,
@@ -145,7 +168,7 @@ const renderChannel = () => {
 
 };
 
-const addChannelToList = (channel, filter) => {
+const addChannelToList = (channel) => {
 
     const { channelName, channelLogo, channelContent, channelUrl, channelFollowers } = channel.channelInfo;
     const { isActive, streamStatus, streamViewers, streamPreviewImg } = channel.streamInfo;
@@ -192,23 +215,17 @@ const filterDisplayedChannels = (filter) => {
 
     switch (filter) {
         case "active":
-            console.log(filter);
             $channelsList.empty();
+            renderChannel("active");
             break;
         case "inactive":
-            console.log(filter);
             $channelsList.empty();
+            renderChannel("inactive");
             break;
         default:
             $channelsList.empty();
             channelsData.forEach(channel => $channelsList.append(addChannelToList(channel)))
     }
-
-};
-
-const renderFilteredList = (filter) => {
-
-
 
 };
 
