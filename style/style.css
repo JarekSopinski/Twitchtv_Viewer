@@ -16,9 +16,17 @@ h1, h2, h3 {
   font-family: "Black Han Sans", sans-serif; }
 
 h1 {
-  margin: 25px 25px 0 25px;
+  margin: 25px;
   font-size: 35px;
   text-align: center;
+  color: #EAE2B7; }
+
+#activeChannelsCounter h2 {
+  text-align: center;
+  font-size: 25px; }
+#activeChannelsCounter h2:first-of-type {
+  color: #20BF55; }
+#activeChannelsCounter h2:last-of-type {
   color: #EAE2B7; }
 
 #channelsList {

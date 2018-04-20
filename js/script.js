@@ -6,8 +6,11 @@
 5) Round logo
 6) Rest of styles
 7) New channels list
+8) Display all / online / offline
+9) List how many are online
 */
 
+const $activeChannelsCounter = $("#activeChannelsCounter");
 const $channelsList = $("#channelsList");
 
 const API_URL = "https://wind-bow.gomix.me/twitch-api";
@@ -30,6 +33,7 @@ const displayedChannelsNames = [
 ]; // Temporary disabled most items to prevent doing too many calls in development stage
 
 const activeChannels = [];
+const inactiveChannels = [];
 const renderedChannels = [];
 
 class channelInfo {
@@ -58,6 +62,7 @@ const getChannelsData = (channelName) => {
         .then(() => fetchDataFromTwitchAPI(channelName, "channels"))
         .then(data => passInactiveChannelsDataToClass(data))
         .then(() => renderChannel())
+        .then((channelsCount) => updateActiveChannelsCounter(channelsCount))
         .catch(error => alert(error))
 
 };
@@ -116,6 +121,8 @@ const passInactiveChannelsDataToClass = (data) => {
             "streamInfo": new streamInfo(isActive, streamStatus, streamViewers, streamPreviewPlaceholder)
         });
 
+        inactiveChannels.push(channelName)
+
     }
 
 };
@@ -127,7 +134,12 @@ const renderChannel = () => {
           renderedChannels.push(channel);
           $channelsList.append(addChannelToList(channel))
       }
-  })
+  });
+
+  return {
+      activeChannels: activeChannels.length,
+      inactiveChannels: inactiveChannels.length
+  };
 
 };
 
@@ -161,8 +173,20 @@ const addChannelToList = (channel) => {
 
 };
 
+const updateActiveChannelsCounter = (channelsCount) => {
+
+    const { activeChannels, inactiveChannels } = channelsCount;
+
+    $activeChannelsCounter.empty();
+    $activeChannelsCounter.append(`
+            <h2>Online: ${activeChannels}</h2>
+            <h2>Offline: ${inactiveChannels}</h2>
+`)
+
+};
+
 $(document).ready(() => {
 
-    $(window).on( "load", displayedChannelsNames.forEach(channelName => getChannelsData(channelName)))
+    $(window).on( "load", displayedChannelsNames.forEach(channelName => getChannelsData(channelName)));
 
 });
