@@ -152,7 +152,7 @@ const addChannelToList = (channel) => {
     isActive ? itemBgColor = "background-color:#9BC53D" : itemBgColor = "background-color:#7C7A7A";
 
     return $(`<li id="channelsList-item" style=${itemBgColor}>
-                    <a href=${channelUrl}>
+                    <a href=${channelUrl} target="_blank">
                         <div id="channelsList-item-streamInfo">
                         
                             <img src=${channelLogo} id="channelLogo">

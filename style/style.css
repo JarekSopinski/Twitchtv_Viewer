@@ -80,10 +80,11 @@ footer {
   margin-bottom: 25px; }
   footer span {
     font-style: italic;
-    font-size: 15px; }
-  footer span:first-of-type {
+    font-size: 15px;
     color: #EAE2B7; }
-  footer span:last-of-type {
+  footer a {
+    font-style: italic;
+    font-size: 15px;
     color: #F77F00; }
 
 @media screen and (min-width: 576px) {
