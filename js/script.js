@@ -1,18 +1,20 @@
 /*TODO:
-1) Adding new channel
+DONE 1) Adding new channel
 2) Error handling (new channel name)
 3) Refactor names is DOM
 DONE 4) Better colors
 DONE 5) Round logo
 DONE 6) Rest of styles
 7) New channels list
-8) Display all / online / offline
+DONE 8) Display all / online / offline
 DONE 9) List how many are online
 */
 
 const $channelsCounter = $("#channelsCounter");
 const $channelsSelect = $("#channelsSelect");
 const $channelsList = $("#channelsList");
+const $newChannelInput = $("#newChannelInput");
+const $newChannelBtn = $("#newChannelBtn");
 
 const API_URL = "https://wind-bow.gomix.me/twitch-api";
 const logoPlaceholder = "img/twitch-logo-256x256.png";
@@ -185,7 +187,7 @@ const addChannelToList = (channel) => {
                             <div id="streamDetails">
                                 <h2>${channelName}</h2>
                                 <h3>${channelContent}</h3>
-                                <p>Status: ${streamStatus}</p>
+                                <p>${streamStatus}</p>
                                 <p>Watching: ${streamViewers}</p>
                                 <p>Followers: ${channelFollowers}</p>
                             </div>
@@ -229,9 +231,14 @@ const filterDisplayedChannels = (filter) => {
 
 };
 
+const handleInitialRendering = () => displayedChannelsNames.forEach(channelName => getChannelsData(channelName));
+const handleChannelsSelect = () => filterDisplayedChannels($channelsSelect.val());
+const handleNewChannelBtn = () => getChannelsData($newChannelInput.val());
+
 $(document).ready(() => {
 
-    $(window).on( "load", displayedChannelsNames.forEach(channelName => getChannelsData(channelName)));
-    $channelsSelect.on("change", () => filterDisplayedChannels($channelsSelect.val()))
+    $(window).on( "load", handleInitialRendering);
+    $channelsSelect.on("change", handleChannelsSelect);
+    $newChannelBtn.on("click", handleNewChannelBtn)
 
 });
