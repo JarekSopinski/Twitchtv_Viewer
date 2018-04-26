@@ -8,7 +8,7 @@ Application which allows user to check status of selected channels on Twitch.tv.
 
 #### Functionalities:
 
-1. Displaying initial list of channels. If certain channels is active, user can see detailed info about current stream;
+1. Displaying initial list of channels. If a certain channel is active, user can see detailed info about current stream;
 2. Filtering channels (displaying online or offline only);
 3. Adding new channels.
 
